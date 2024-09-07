@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    list-style: none;
     text-decoration: none;
     box-sizing: border-box;
 }
@@ -59,10 +58,16 @@ header nav span {
 
 header nav a{
     color: #101010;
+    
+}
+header nav span:hover{
+    color: #101010;
+    
 }
 
+
 header nav .button{
-    background-color: #1ab26b; /* This HEX is the color of the button */
+    background-color: #1ab26b; 
     color: #FFF;
     padding: 10px 20px;
     border-radius: 4px;
@@ -78,6 +83,7 @@ header nav .button:hover{
     align-items: center;
     margin: 20px;
     padding-left: 300px;
+    color: black;
   }
   
  
@@ -127,21 +133,13 @@ header nav .button:hover{
     width: 375px;
     height: 375px;
     border-radius: 50%; /* Ensures it's circular */
-    background: url(blueberry-pie.jpg);
+    background: url(images/blueberry-pie.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; /* Fills the container */
-    animation: rotate 5s linear infinite; /* Constant rotation animation */
+    animation: rotate 30s linear infinite; /* Constant rotation animation */
 }
-
-
-
-
-
-  
-  
- 
-  .ing {
+     .ing {
     padding: 10px 20px;
     border: 2px solid #ff6e00;
     color: #ff6e00;
@@ -180,7 +178,6 @@ footer{
     color: black;
     opacity: 0,9;
 }
-/* Hover affect on social media icon */
 .socialIcons a:hover{
     background-color: #111;
     transition: 0.5s;
@@ -239,10 +236,90 @@ footer{
     }
 }
 ul.info {
-    list-style-type: disc; /* Ensures circular bullet points */
-    margin-left: 20px;     /* Optional: adjust to position the bullets */
+    list-style-type: disc; 
+    margin-left: 20px; 
+       
 }
 
 ul.info li {
-    margin-bottom: 10px;   /* Adds space between bullet points */
+    margin-bottom: 10px;   
 }
+.pie h1{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline; color: rgb(166, 155, 32);
+}
+.pie{
+display: flexbox;
+background-color: rgb(202, 199, 199);
+width: 60%;
+height: 20%;
+margin-top: 5rem;
+}
+.pieBody{
+margin-left: 5rem;
+}
+.pieImage{
+    margin-top: 10px;
+    width: 175px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+}
+.underline{
+    display: flexbox;
+    border-bottom: 2px solid black; /* Thickness and color of the underline */
+    padding-top: 5px;
+    width: 60%;
+}
+.pieComponent{
+    
+        display: flexbox;
+        background-color: rgb(202, 199, 199);
+        width: 60%;
+        height: 20%;
+        margin-top: 1rem;
+        
+}
+.pieComponent h2{
+    
+    display: flexbox;
+    background-color: rgb(202, 199, 199);
+    width: 60%;
+    height: 20%;
+    margin-top: 1rem;
+    text-decoration: underline; color: rgb(208, 194, 35);
+
+}
+.yellowBox{
+        background-color: rgb(235, 239, 173);
+        width: 56%;
+        height: 70%;
+        margin-top: 1rem;
+        margin-left: 25px;
+        justify-content: center;
+        text-wrap: wrap;
+}
+.link{
+    display: block;
+    text-decoration: underline; color: rgb(166, 155, 32);
+margin-top: 10px;
+}
+.in{
+    list-style-image: url('images/pie_icon\ \(1\).gif' );
+    padding-left: 20px; /* Optional: Add padding to align bullets */
+    margin: 0; /* Ensure default margin is reset */
+  }
+  .directions{
+    padding-left: 20px;
+    margin: 0; 
+  }
+  .unlist{
+    margin-left: 2%;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    background-color: gray;  
+    display: inline-block;   
+    padding: 5px 10px;       
+    margin: 0;             
+  }
+  
