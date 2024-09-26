@@ -1,0 +1,75 @@
+{
+  "categories": [
+    {
+      "name": "Trending Now !",
+      "movies": [
+        {
+          "title": "Wonder Woman",
+          "price": 19.99,
+          "image": "images/movie-poster-movie-starring-actor_1144036-5333.jpg"
+        },
+        {
+          "title": "Scarlet Witch",
+          "price": 24.99,
+          "image": "images/movie-poster_1144036-5445.jpg"
+        },
+        {
+          "title": "The Wel Wall",
+          "price": 14.99,
+          "image": "images/we.jpg"
+        },
+        {
+          "title": "The Godfather",
+          "price": 29.99,
+          "image": "images/the-godfather-movie-poster-md.jpg"
+        },
+        {
+          "title": "Inception",
+          "price": 22.99,
+          "image": "images/inception.jpg"
+        },
+        {
+          "title": "The Matrix",
+          "price": 18.99,
+          "image": "images/matrix.jpg"
+        },
+        {
+          "title": "The Matix",
+          "price": 18.99,
+          "image": "images/matrix.jpg"
+        },
+
+        {
+            "title": "The Matrix",
+            "price": 18.99,
+            "image": "images/matrix.jpg"
+          }
+      ]
+    },
+    {
+      "name": "Top Picks for You !",
+      "movies": [
+        {
+          "title": "Dune Part II",
+          "price": 18.99,
+          "image": "images/il_570xN.5015959335_ag80.webp"
+        },
+        {
+          "title": "Agent 00",
+          "price": 21.99,
+          "image": "images/glassesgirl.jpg"
+        },
+        {
+          "title": "Mirrors Edge",
+          "price": 16.99,
+          "image": "images/girl.jpg"
+        },
+        {
+          "title": "No Hard Feelings",
+          "price": 22.99,
+          "image": "images/no-hard-feelings-movie-poster-md.jpg"
+        }
+      ]
+    }
+  ]
+}

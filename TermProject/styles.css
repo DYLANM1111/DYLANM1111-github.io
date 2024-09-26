@@ -396,3 +396,53 @@ footer {
         width: 100%;
     }
 }
+
+
+
+.category-row-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .category-row {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .category-row::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  .movie {
+    flex: 0 0 auto;
+    width: 250px;  /* Adjust based on your desired movie card width */
+    margin-right: 20px;
+  }
+  
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 1;
+  }
+  
+  .scroll-btn.left {
+    left: 0;
+  }
+  
+  .scroll-btn.right {
+    right: 0;
+  }
+  
+  .scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
