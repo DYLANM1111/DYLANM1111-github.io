@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Sinema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h2>sinema</h2>
+            <div class="show-nav">
+                <a href="index.html">Home</a>
+                <a href="">TV Shows</a>
+                <a href="">Movies</a>
+                <a href="">Recently Added</a>
+                <a href="">MyList</a>
+                <a href="details.html">Details</a>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" placeholder="Search">
+            </div>
+            <div class="user-actions">
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+                <div class="button">
+                    <p>Login</p>
+                    <button class="btn">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="cart-page">
+        <h1>Your Shopping Cart</h1>
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-item">
+                    <img src="images/movie-poster-movie-starring-actor_1144036-5333.jpg" alt="Wonder Woman">
+                    <div class="item-details">
+                        <h3>Wonder Woman</h3>
+                        <p class="price">$19.99</p>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" max="10">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <p class="item-total">$19.99</p>
+                    <button class="remove-item"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="cart-item">
+                    <img src="images/movie-poster_1144036-5445.jpg" alt="Scarlet Witch">
+                    <div class="item-details">
+                        <h3>Scarlet Witch</h3>
+                        <p class="price">$24.99</p>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="2" min="1" max="10">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <p class="item-total">$49.98</p>
+                    <button class="remove-item"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>$69.97</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax (6.75%)</span>
+                    <span>$4.72</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>$74.69</span>
+                </div>
+                <button class="btn btn-checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footerContainer">
+            <div class="socialIcons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footerBottom">
+            <p>Copyright &copy; 2024; Designed by <span class="designer">Dylan</span></p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>
