@@ -22,7 +22,7 @@ nav {
     background-color: #ffffff;
     padding: 15px 0;
     position: fixed;
-    height: 8%;
+    height: auto;
     top: 0;
     left: 0;
     right: 0;
@@ -184,6 +184,7 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .movie:hover {
@@ -217,7 +218,7 @@ nav {
 
 .movie-info a {
     text-decoration: none;
-    color: #007bff;
+    color: #c4000f;
     font-weight: bold;
 }
 
@@ -264,6 +265,8 @@ nav {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
+    margin-top: 50px;
+
 }
 
 .product-image {
@@ -780,7 +783,7 @@ footer {
 
 #trailerVideo {
     width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%; 
     position: relative;
     overflow: hidden;
     border-radius: 4px;
@@ -822,3 +825,62 @@ footer {
     margin-right: 8px;
 }
 
+/* Profile Icon Styles */
+.user-profile {
+    position: relative;
+}
+
+.profile-icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+    color: #2980b9;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #ffffff;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-dropdown ul li {
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown ul li:hover {
+    background-color: #f8f9fa;
+}
+
+.profile-dropdown ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

@@ -42,16 +42,24 @@
                       <span class="cart-count">2</span>
                   </a>
               </div>
-              <div class="button">
-                  <p>Login</p>
-                  <button class="btn">SignUp</button>
-              </div>
+              <div class="user-profile">
+                <div class="profile-icon" id="profileIcon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <ul>
+                        <li><a href="#profile">My Profile</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="splash.html">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
           </div>
       </div>
   </nav>
 
     <section class="categories">
-        <!-- Movie categories will be dynamically inserted here -->
+        <!-- Movie categories  -->
       </section>
       
       <script src="fetchMovie.js"></script>
@@ -72,6 +80,6 @@
       </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
