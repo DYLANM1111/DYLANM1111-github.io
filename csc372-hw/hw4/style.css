@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-around;
+}
+
+figure {
+    text-align: center;
+}
+
+.choice {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.choice.selected {
+    border: 5px solid #4CAF50;
+}

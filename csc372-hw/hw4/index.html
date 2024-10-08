@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        
+        <section id="player-throw">
+            <h2>Your Throw</h2>
+            <div class="choices">
+                <figure>
+                    <img src="/images/rock.PNG" alt="Rock" id="rock" class="choice">
+                    <figcaption>Rock</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/paper.PNG" alt="Paper" id="paper" class="choice">
+                    <figcaption>Paper</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/scissors.PNG" alt="Scissors" id="scissors" class="choice">
+                    <figcaption>Scissors</figcaption>
+                </figure>
+            </div>
+        </section>
+        
+        <section id="computer-throw">
+            <h2>Computer's Throw</h2>
+            <figure>
+                <img src="images/question-mark.PNG" alt="Question Mark" id="computer-choice">
+                <figcaption id="computer-caption">Thinking...</figcaption>
+            </figure>
+        </section>
+        
+        <section id="outcome">
+            <h2>Outcome</h2>
+            <p id="result">Make your throw!</p>
+        </section>
+        
+        <section id="score">
+            <h2>Score</h2>
+            <p>Wins: <span id="wins">0</span></p>
+            <p>Losses: <span id="losses">0</span></p>
+            <p>Ties: <span id="ties">0</span></p>
+            <button id="reset">Reset Scores</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
