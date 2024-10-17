@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Movie Listing</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="side-nav">
+        <div class="user">
+            <img src="Admin-Images/dogselfie.jpeg" class="user-img">
+            <div>
+                <h2>Name</h2>
+                <p>Email@Email</p>
+            </div>
+            <img src="Admin-Images/star.png" class="star-img">
+        </div>
+        <ul>
+                <li><a href="admin-upload.html"><img src="Admin-Images/dashboard.png"><p>Bulk Upload</p> </a></li>
+                <li><a href="product-edit.html"><img src="Admin-Images/setting.png"><p>Edit Products</p> </a></li>
+                <li><img src="Admin-Images/messages.png"><p>Notifications</p> </li>
+                <li><a href=" admin-products.html"><img src="Admin-Images/projects.png"><p>Product Listings</p></a> </li>
+                <li><a href="../index.html"><img src="Admin-Images/members.png"><p>Switch Permissions</p></a> </li>
+                <li><img src="Admin-Images/reports.png"><p>Reports</p> </li>
+        </ul>
+        <ul><a href="../splash.html"><li> <li><img src="Admin-Images/logout.png"><p>Log out</p> </a></li>
+        </li></ul>
+    </div>
+    <div class="main-content">
+        <h1 class="logo">sinema</h1>
+        <h1>Movie Management</h1>
+        <div class="header">
+            <input type="text" id="search-input" placeholder="Search movies...">
+            <select id="category-filter">
+                <option value="">All Categories</option>
+            </select>
+            <button id="add-movie-btn" class="add-product-btn">Add New Movie</button>
+        </div>
+        <div class="categories">
+            <!-- Movies will be rendered here -->
+        </div>
+        <form id="edit-form" class="product-form" style="display:none;">
+            <h2>Add/Edit Movie</h2>
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label for="edit-title">Title:</label>
+                <input type="text" id="edit-title" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-description">Description:</label>
+                <textarea id="edit-description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-category">Category:</label>
+                <input type="text" id="edit-category" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-image">Image Path:</label>
+                <input type="text" id="edit-image" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-price">Price:</label>
+                <input type="number" id="edit-price" step="0.01" required>
+            </div>
+            <button type="submit" class="submit-btn">Save Movie</button>
+        </form>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

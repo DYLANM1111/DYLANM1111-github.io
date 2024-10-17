@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css">
     <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
-<body> 
-    <header>
-      <div class="side-nav">
+<body>
+    <div class="side-nav">
         <div class="user">
             <img src="Admin-Images/dogselfie.jpeg" class="user-img">
             <div>
@@ -28,45 +27,33 @@
         <ul><li>        <li><a href="../splash.html"><img src="Admin-Images/logout.png"><p>Log out</p> </a></li>
         </li></ul>
     </div>
-    </header>
-    <section>
-        <h1>Admin Bulk Product Upload</h1>
-        <form>
-            <input type="file" id="myFile" name="filename">
-            <br>
-            <input type="submit" value="submit">
-
-          </form>
-          <h2>Instructions</h2>
-          <p> Please Upload a file containing bulk product data. The Accepted file formats are:</p>
-          <ul>
-            <li>JSON (.json)</li>
-          </ul>
-          <p>Please ensure that your file follows the correct format for the data to be processed correctly </p>
-          <h2>Example File Format (JSON)</h2>
-          <div class="example">
-<pre>
-    {
-        "categories": [
-          {
-            "name": "Category Name",
-            "movies": [
-              {
-                "title": "Movie Title",
-                "price": 19.99,
-                "image": "path/to/image.jpg"
-              }
-            ]
-          }
-        ]
-      }
-</pre>
-
-
-          </div>
-    </section>
-    <footer>
-
-    </footer>
+    <div class="edit-container">
+    <h1>Edit Product</h1>
+    <form id="editProductForm">
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+        </div>
+        <div class="form-group">
+            <label for="imagePath">Image Path:</label>
+            <input type="text" id="imagePath" name="imagePath" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" required>
+        </div>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
 </body>
 </html>
