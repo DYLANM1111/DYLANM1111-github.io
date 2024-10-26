@@ -21,7 +21,7 @@ function createMovieElement(movie) {
     }
     
     movieElement.innerHTML = `
-        <img src="${imagePath}" alt="${movie.title}" onerror="this.onerror=null; this.src='/images/placeholder.jpg';">
+        <img src="${imagePath}" alt="${movie.title}" onerror="this.onerror=null; this.src='/images/placeholder.jpg ';" ${imagePath}>
         <div class="movie-info">
             <h3>${movie.title}</h3>
             <p>Price: $${movie.price.toFixed(2)}</p>
