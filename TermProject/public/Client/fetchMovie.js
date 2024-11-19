@@ -1,12 +1,9 @@
-// fetchMovie.js
-
 async function fetchMovieData() {
   try {
       const response = await fetch('http://localhost:3000/api/all');
       if (!response.ok) {
           throw new Error('Failed to fetch movie data');
       }
-      // Group movies by category
       const movies = await response.json();
       return groupMoviesByCategory(movies);
   } catch (error) {
@@ -20,7 +17,6 @@ function groupMoviesByCategory(movies) {
       categories: []
   };
 
-  // Group movies by category_id
   const groupedMovies = movies.reduce((acc, movie) => {
       if (!acc[movie.category_id]) {
           acc[movie.category_id] = [];
@@ -29,7 +25,7 @@ function groupMoviesByCategory(movies) {
           id: movie.id,
           title: movie.title,
           description: movie.description,
-          image: movie.imgUrl,  
+          imgUrl: movie.imgUrl,  // Changed this to match the property name
           price: movie.price,
           genre: movie.genre,
           release_year: movie.release_year
@@ -40,7 +36,7 @@ function groupMoviesByCategory(movies) {
   Object.keys(groupedMovies).forEach(categoryId => {
       categorizedData.categories.push({
           id: parseInt(categoryId),
-          name: `Category ${categoryId}`, 
+          name: `Category ${categoryId}`,
           movies: groupedMovies[categoryId]
       });
   });
@@ -52,11 +48,11 @@ function createMovieElement(movie) {
   const movieElement = document.createElement('div');
   movieElement.className = 'movie';
   movieElement.innerHTML = `
-      <img src="${movie.image}" alt="${movie.title}">
+      <img src="${movie.imgUrl}" alt="${movie.title}">
       <div class="movie-info">
           <h3>${movie.title}</h3>
           <p class="price">$${movie.price.toFixed(2)}</p>
-          <p class="genre">${movie.genre}</p>
+          <p class="genre">${movie.genre || ''}</p>
           <p class="year">${movie.release_year}</p>
           <a href="details.html?id=${movie.id}">View Details</a>
       </div>
@@ -118,25 +114,28 @@ function scrollMovies(movieRow, direction) {
   movieRow.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 }
 
-// Add search functionality
 function setupSearch() {
   const searchInput = document.querySelector('.search-bar input');
-  searchInput.addEventListener('input', async (e) => {
-      if (e.target.value.length >= 2) {
-          try {
-              const response = await fetch(`http://localhost:3000/api/movies/search?term=${e.target.value}`);
-              const searchResults = await response.json();
-              renderSearchResults(searchResults);
-          } catch (error) {
-              console.error('Search error:', error);
+  let searchTimeout;
+
+  searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(async () => {
+          if (e.target.value.length >= 2) {
+              try {
+                  const response = await fetch(`http://localhost:3000/api/movies/search?term=${e.target.value}`);
+                  const searchResults = await response.json();
+                  renderSearchResults(searchResults);
+              } catch (error) {
+                  console.error('Search error:', error);
+              }
+          } else if (e.target.value.length === 0) {
+              const movieData = await fetchMovieData();
+              if (movieData) {
+                  renderMovieCategories(movieData);
+              }
           }
-      } else if (e.target.value.length === 0) {
-          // Reset to normal view
-          const movieData = await fetchMovieData();
-          if (movieData) {
-              renderMovieCategories(movieData);
-          }
-      }
+      }, 300); // Debounce search for better performance
   });
 }
 
@@ -145,7 +144,7 @@ function renderSearchResults(movies) {
   if (!categoriesSection) return;
 
   categoriesSection.innerHTML = '';
-  
+
   const searchResultsElement = document.createElement('div');
   searchResultsElement.className = 'search-results';
   
@@ -156,9 +155,25 @@ function renderSearchResults(movies) {
   const movieGrid = document.createElement('div');
   movieGrid.className = 'movie-grid';
 
-  movies.forEach(movie => {
-      movieGrid.appendChild(createMovieElement(movie));
-  });
+  if (movies.length === 0) {
+      movieGrid.innerHTML = '<p class="no-results">No movies found</p>';
+  } else {
+      movies.forEach(movie => {
+          const movieElement = document.createElement('div');
+          movieElement.className = 'movie';
+          movieElement.innerHTML = `
+              <img src="${movie.imgUrl}" alt="${movie.title}">
+              <div class="movie-info">
+                  <h3>${movie.title}</h3>
+                  <p class="price">$${movie.price.toFixed(2)}</p>
+                  <p class="genre">${movie.genre || ''}</p>
+                  <p class="year">${movie.release_year}</p>
+                  <a href="details.html?id=${movie.id}">View Details</a>
+              </div>
+          `;
+          movieGrid.appendChild(movieElement);
+      });
+  }
 
   searchResultsElement.appendChild(movieGrid);
   categoriesSection.appendChild(searchResultsElement);
