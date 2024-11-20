@@ -135,7 +135,7 @@ function setupSearch() {
                   renderMovieCategories(movieData);
               }
           }
-      }, 300); // Debounce search for better performance
+      }, 300); 
   });
 }
 

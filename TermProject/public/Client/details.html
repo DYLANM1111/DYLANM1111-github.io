@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="details.css">
 </head>
 <body>
     <nav>
@@ -15,10 +14,10 @@
             <h2>sinema</h2>
             <div class="show-nav">
                 <a href="index.html">Home</a>
-                <a href="">TV Shows</a>
-                <a href="">Movies</a>
-                <a href="">Recently Added</a>
-                <a href="">MyList</a>
+                <a href="#">TV Shows</a>
+                <a href="#">Movies</a>
+                <a href="#">Recently Added</a>
+                <a href="#">MyList</a>
             </div>
             <div class="search-bar">
                 <i class="fas fa-search"></i>
@@ -49,39 +48,43 @@
 
     <main class="product-details-page">
         <div class="product-details-container">
+            <!-- Movie Image -->
             <div class="product-image">
-                <img src="images/movie-poster-movie-starring-actor_1144036-5333.jpg" alt="Wonder Woman">
-                <div class="play-trailer">
+                <img src="" alt="" id="movieImage">
+                <div class="play-trailer" id="playTrailer">
                     <i class="fas fa-play"></i>
                     <span>Play Trailer</span>
                 </div>
             </div>
+
+            <!-- Movie Information -->
             <div class="product-info">
-                <h1>Wonder Woman</h1>
+                <h1 id="movieTitle">Loading...</h1>
                 <div class="movie-meta">
-                    <span class="rating"><i class="fas fa-star"></i> 4.5</span>
-                    <span class="duration"><i class="fas fa-clock"></i> 2h 21min</span>
-                    <span class="year">2017</span>
-                    <span class="genre">Action, Adventure, Fantasy</span>
+                    <span class="rating" id="movieRating"><i class="fas fa-star"></i> N/A</span>
+                    <span class="duration" id="movieDuration"><i class="fas fa-clock"></i> N/A</span>
+                    <span class="year" id="movieYear">N/A</span>
+                    <span class="genre" id="movieGenre">N/A</span>
                 </div>
-                <p class="price">$19.99</p>
-                <p class="description">An epic adventure about a fearless Space warrior who leaves her Planet home to explore the world and, in doing so, becomes one of the world's greatest heroes.</p>
-                <div class="details">
+                <p class="price" id="moviePrice">$0.00</p>
+                <p class="description" id="movieDescription">Description loading...</p>
+                <div class="details" id="movieDetails">
                     <h3>Movie Details</h3>
-                    <p><strong>Director:</strong> Patty Jenkins</p>
-                    <p><strong>Starring:</strong> Gal Gadot, Chris Pine, Robin Wright</p>
-                    <p><strong>Language:</strong> English</p>
-                    <p><strong>Subtitles:</strong> English, Spanish, French</p>
+                    <p><strong>Director:</strong> <span id="movieDirector">N/A</span></p>
+                    <p><strong>Starring:</strong> <span id="movieStarring">N/A</span></p>
+                    <p><strong>Language:</strong> <span id="movieLanguage">N/A</span></p>
+                    <p><strong>Subtitles:</strong> <span id="movieSubtitles">N/A</span></p>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                    <button class="btn btn-secondary add-to-wishlist"><i class="fas fa-heart"></i> Add to Wishlist</button>
+                    <button class="btn btn-primary add-to-cart" id="addToCartButton">Add to Cart</button>
+                    <button class="btn btn-secondary add-to-wishlist" id="addToWishlistButton">
+                        <i class="fas fa-heart"></i> Add to Wishlist
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
-  
     <div id="trailerModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -105,6 +108,5 @@
 
     <script src="details.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
