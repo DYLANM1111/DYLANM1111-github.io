@@ -32,12 +32,12 @@
     <section>
       <h1 class="logo">sinema</h1>
         <h1>Admin Bulk Product Upload</h1>
-        <form>
-            <input type="file" id="myFile" name="filename">
-            <br>
-            <input type="submit" value="submit">
-
-          </form>
+        <form id="bulkUploadForm" action="/bulk-upload" method="POST" enctype="multipart/form-data">
+          <input type="file" id="myFile" name="bulkFile" accept=".json" required>
+          <button type="submit">Submit</button>
+      </form>
+      
+      
           <h2>Instructions</h2>
           <p> Please Upload a file containing bulk product data. The Accepted file formats are:</p>
           <ul>
@@ -46,23 +46,36 @@
           <p>Please ensure that your file follows the correct format for the data to be processed correctly </p>
           <h2>Example File Format (JSON)</h2>
           <div class="example">
-<pre>
-    {
-        "categories": [
-          {
-            "name": "Category Name",
-            "movies": [
+            <pre>
               {
-                "title": "Movie Title",
-                "price": 19.99,
-                "image": "path/to/image.jpg"
+               "categories": [
+                 {
+                   "name": "Action",
+                   "display_order": 1,
+                   "movies": [
+                     {
+                       "title": "Movie Title", 
+                       "description": "Movie description",
+                       "imgUrl": "images/movie.jpg",
+                       "price": 19.99,
+                       "release_year": "2024",
+                       "is_featured": true,
+                       "movie_details": {
+                         "director": "Director Name",
+                         "genre": "Action/Adventure", 
+                         "trailer_url": "https://example.com/trailer",
+                         "rating": 4.5,
+                         "time": "2h 30m",
+                         "subtitles": "English,Spanish",
+                         "language": "English",
+                         "staring": "Actor 1, Actor 2"
+                       }
+                     }
+                   ]
+                 }
+               ]
               }
-            ]
-          }
-        ]
-      }
-</pre>
-
+              </pre>
 
           </div>
     </section>

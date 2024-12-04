@@ -28,7 +28,7 @@
                 <div class="cart-icon">
                     <a href="cart.html">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">2</span>
+                        <span class="cart-count" id="cartCount">0</span>
                     </a>
                 </div>
                 <div class="user-profile">
@@ -49,56 +49,44 @@
 
     <main class="cart-page">
         <h1>Your Shopping Cart</h1>
+        
+        <!-- Empty Cart Message -->
+        <div class="empty-cart-message" style="display: none;">
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added any movies to your cart yet.</p>
+            <a href="index.html" class="btn">Continue Shopping</a>
+        </div>
+
         <div class="cart-container">
-            <div class="cart-items">
-                <div class="cart-item">
-                    <img src="images/movie-poster-movie-starring-actor_1144036-5333.jpg" alt="Wonder Woman">
-                    <div class="item-details">
-                        <h3>Wonder Woman</h3>
-                        <p class="price">$19.99</p>
-                    </div>
-                    <div class="item-quantity">
-                        <button class="quantity-btn minus">-</button>
-                        <input type="number" value="1" min="1" max="10">
-                        <button class="quantity-btn plus">+</button>
-                    </div>
-                    <p class="item-total">$19.99</p>
-                    <button class="remove-item"><i class="fas fa-trash"></i></button>
-                </div>
-                <div class="cart-item">
-                    <img src="images/movie-poster_1144036-5445.jpg" alt="Scarlet Witch">
-                    <div class="item-details">
-                        <h3>Scarlet Witch</h3>
-                        <p class="price">$24.99</p>
-                    </div>
-                    <div class="item-quantity">
-                        <button class="quantity-btn minus">-</button>
-                        <input type="number" value="2" min="1" max="10">
-                        <button class="quantity-btn plus">+</button>
-                    </div>
-                    <p class="item-total">$49.98</p>
-                    <button class="remove-item"><i class="fas fa-trash"></i></button>
-                </div>
+            <!-- Cart Items Container -->
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically inserted here -->
             </div>
+
+            <!-- Order Summary -->
             <div class="cart-summary">
                 <h2>Order Summary</h2>
-                <div class="summary-item">
-                    <span>Subtotal</span>
-                    <span>$69.97</span>
-                </div>
-                <div class="summary-item">
-                    <span>Tax (6.75%)</span>
-                    <span>$4.72</span>
-                </div>
-                <div class="summary-item">
-                    <span>Shipping</span>
-                    <span>Free</span>
+                <div class="summary-items">
+                    <div class="summary-item subtotal">
+                        <span>Subtotal</span>
+                        <span id="subtotal-amount">$0.00</span>
+                    </div>
+                    <div class="summary-item tax">
+                        <span>Tax (6.75%)</span>
+                        <span id="tax-amount">$0.00</span>
+                    </div>
+                    <div class="summary-item shipping">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
                 </div>
                 <div class="summary-total">
                     <span>Total</span>
-                    <span>$74.69</span>
+                    <span id="total-amount">$0.00</span>
                 </div>
-                <button class="btn btn-checkout">Proceed to Checkout</button>
+                <button class="btn btn-checkout" id="checkoutBtn" disabled>
+                    Proceed to Checkout
+                </button>
             </div>
         </div>
     </main>
@@ -113,12 +101,10 @@
             </div>
         </div>
         <div class="footerBottom">
-            <p>Copyright &copy; 2024; Designed by <span class="designer">Dylan</span></p>
+            <p>Copyright &copy; <span id="year">2024</span>; Designed by <span class="designer">Dylan</span></p>
         </div>
     </footer>
 
     <script src="cart.js"></script>
-    <script src="script.js"></script>
-
 </body>
 </html>

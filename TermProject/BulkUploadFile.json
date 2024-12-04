@@ -1,0 +1,77 @@
+{
+    "categories": [
+      {
+        "name": "Action",
+        "display_order": 1,
+        "movies": [
+          {
+            "title": "Explosive Chase",
+            "description": "An exhilarating car chase across the city to stop a heist.",
+            "imgUrl": "images/explosive_chase.jpg",
+            "price": 19.99,
+            "release_year": "2024",
+            "is_featured": true,
+            "movie_details": {
+              "director": "Michael Storm",
+              "genre": "Action/Thriller",
+              "trailer_url": "https://example.com/trailer/explosive_chase",
+              "rating": 4.7,
+              "time": "2h 15m",
+              "subtitles": "English,French,Spanish",
+              "language": "English",
+              "staring": "John Doe, Jane Smith"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Comedy",
+        "display_order": 2,
+        "movies": [
+          {
+            "title": "Laugh Out Loud",
+            "description": "A hilarious adventure of a misfit duo.",
+            "imgUrl": "images/laugh_out_loud.jpg",
+            "price": 14.99,
+            "release_year": "2023",
+            "is_featured": false,
+            "movie_details": {
+              "director": "Sarah Fun",
+              "genre": "Comedy",
+              "trailer_url": "https://example.com/trailer/laugh_out_loud",
+              "rating": 4.3,
+              "time": "1h 50m",
+              "subtitles": "English",
+              "language": "English",
+              "staring": "Chris Happy, Anna Smile"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Drama",
+        "display_order": 3,
+        "movies": [
+          {
+            "title": "Echoes of the Past",
+            "description": "A family struggles to come to terms with their history.",
+            "imgUrl": "images/echoes_of_the_past.jpg",
+            "price": 18.99,
+            "release_year": "2022",
+            "is_featured": false,
+            "movie_details": {
+              "director": "Liam Story",
+              "genre": "Drama",
+              "trailer_url": "https://example.com/trailer/echoes_of_the_past",
+              "rating": 4.6,
+              "time": "2h",
+              "subtitles": "English,Spanish",
+              "language": "English",
+              "staring": "Emma Grace, Michael Stone"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  

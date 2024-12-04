@@ -1,49 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const productImage = document.querySelector('.product-image');
-    const modal = document.getElementById('trailerModal');
-    const closeBtn = document.querySelector('.close');
-    const trailerVideo = document.getElementById('trailerVideo');
-
-    const trailerUrl = 'images/wonder.mp4';
-
-    productImage.addEventListener('click', function() {
-        openModal();
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('click', function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    });
-
-    function openModal() {
-        modal.style.display = 'block';
-        setTimeout(() => {
-            modal.classList.add('show');
-        }, 10);
-        trailerVideo.innerHTML = `<video width="100%" height="auto" controls>
-                                    <source src="${trailerUrl}" type="video/mp4">
-                                  </video>`;
-        setTimeout(() => {
-            trailerVideo.querySelector('video').play();
-        }, 300);
-    }
-
-    function closeModal() {
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.style.display = 'none';
-            trailerVideo.innerHTML = '';
-        }, 300);
-    }
-});
-function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-// Utility function to extract query parameters
+// Single utility function for query params
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -51,34 +6,38 @@ function getQueryParam(param) {
 
 // Fetch and display movie details
 async function loadMovieDetails() {
-    const movieId = getQueryParam("id"); // Extract 'id' from the URL
+    const movieId = getQueryParam("id");
     if (!movieId) {
         document.querySelector(".product-details-container").innerHTML = "<p>Invalid movie ID.</p>";
         return;
     }
 
     try {
-        // Fetch movie details from the backend API
         const response = await fetch(`http://localhost:3000/api/movies/${movieId}`);
         if (!response.ok) {
             throw new Error("Failed to fetch movie details.");
         }
 
         const movie = await response.json();
+        console.log("Fetched movie data:", movie); // Debug log
         populateMovieDetails(movie);
+        setupTrailerModal(movie.trailer_url);
+        setupCartFunctionality(movie);
     } catch (error) {
+        console.error("Error loading movie:", error);
         document.querySelector(".product-details-container").innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }
 
 function populateMovieDetails(movie) {
-    console.log("this is the movie,", movie)
-    document.querySelector(".product-image img").src = movie.imgUrl;
-    document.querySelector(".product-image img").alt = movie.title;
+    const productImage = document.querySelector(".product-image img");
+    if (productImage) {
+        productImage.src = movie.imgUrl;
+        productImage.alt = movie.title;
+    }
+
     document.querySelector(".product-info h1").textContent = movie.title;
     document.querySelector(".price").textContent = `$${movie.price.toFixed(2)}`;
-    document.querySelector(".movie-meta .rating").innerHTML = `<i class="fas fa-star"></i> ${movie.rating}`;
-    document.querySelector(".movie-meta .duration").innerHTML = `<i class="fas fa-clock"></i> ${movie.duration}`;
     document.querySelector(".movie-meta .year").textContent = movie.release_year;
     document.querySelector(".movie-meta .genre").textContent = movie.genre || "N/A";
     document.querySelector(".description").textContent = movie.description || "No description available.";
@@ -92,7 +51,114 @@ function populateMovieDetails(movie) {
     document.querySelector(".details").innerHTML = `<h3>Movie Details</h3>${detailsHTML}`;
 }
 
-document.addEventListener("DOMContentLoaded", loadMovieDetails);
-document.getElementById("movieImage").src = movie.imgUrl;
-document.getElementById("movieImage").alt = movie.title;
-document.getElementById("movieTitle").textContent = movie.title;
+function setupTrailerModal(trailerUrl) {
+    const productImage = document.querySelector('.product-image');
+    const modal = document.getElementById('trailerModal');
+    const closeBtn = document.querySelector('.close');
+    const trailerVideo = document.getElementById('trailerVideo');
+
+    if (!modal || !trailerVideo) return;
+
+    function openModal() {
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        trailerVideo.innerHTML = `
+            <video width="100%" height="auto" controls>
+                <source src="${trailerUrl}" type="video/mp4">
+            </video>
+        `;
+        setTimeout(() => {
+            const video = trailerVideo.querySelector('video');
+            if (video) video.play();
+        }, 300);
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            trailerVideo.innerHTML = '';
+        }, 300);
+    }
+
+    productImage.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+    });
+}
+
+function setupCartFunctionality(movie) {
+    console.log("Setting up cart functionality"); // Debug log
+    
+    const addToCartButton = document.querySelector('.add-to-cart');
+    console.log("Add to cart button:", addToCartButton); // Debug log
+    
+    if (!addToCartButton) {
+        console.error("Add to cart button not found!");
+        return;
+    }
+
+    // Remove any existing listeners
+    const newButton = addToCartButton.cloneNode(true);
+    addToCartButton.parentNode.replaceChild(newButton, addToCartButton);
+
+    newButton.addEventListener('click', function() {
+        console.log("Add to cart clicked"); // Debug log
+        
+        try {
+            // Get existing cart
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Create cart item
+            const cartItem = {
+                id: movie.id,
+                title: movie.title,
+                price: movie.price,
+                imgUrl: movie.imgUrl,
+                quantity: 1
+            };
+            
+            console.log("Adding to cart:", cartItem); // Debug log
+            
+            // Add to cart
+            cart.push(cartItem);
+            
+            // Save cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                cartCount.textContent = cart.length;
+            }
+            
+            // Show success message
+            alert('Movie added to cart!');
+            
+            console.log("Cart updated:", cart); // Debug log
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            alert('Failed to add movie to cart');
+        }
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded"); // Debug log
+    loadMovieDetails();
+});
+
+// Export functions if needed
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        getQueryParam,
+        loadMovieDetails,
+        populateMovieDetails,
+        setupTrailerModal,
+        setupCartFunctionality
+    };
+}
