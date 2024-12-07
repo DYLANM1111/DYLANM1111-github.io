@@ -1,77 +1,203 @@
 {
-    "categories": [
-      {
-        "name": "Action",
-        "display_order": 1,
-        "movies": [
-          {
-            "title": "Explosive Chase",
-            "description": "An exhilarating car chase across the city to stop a heist.",
-            "imgUrl": "images/explosive_chase.jpg",
-            "price": 19.99,
-            "release_year": "2024",
-            "is_featured": true,
-            "movie_details": {
-              "director": "Michael Storm",
-              "genre": "Action/Thriller",
-              "trailer_url": "https://example.com/trailer/explosive_chase",
-              "rating": 4.7,
-              "time": "2h 15m",
-              "subtitles": "English,French,Spanish",
-              "language": "English",
-              "staring": "John Doe, Jane Smith"
-            }
+  "categories": [
+    {
+      "id": 1,
+      "name": "Action",
+      "display_order": 1,
+      "movies": [
+        {
+          "title": "Naruto",
+          "description": "The journey of a young ninja striving to become Hokage.",
+          "imgUrl": "images/naruto.jpg",
+          "price": 19.99,
+          "release_year": "2002",
+          "is_featured": true,
+          "category_id": 1,
+          "movie_details": {
+            "director": "Hayato Date",
+            "genre": "Action/Adventure",
+            "trailer_url": "https://example.com/trailer/naruto",
+            "rating": 4.9,
+            "time": "500 episodes",
+            "subtitles": "English,Japanese",
+            "language": "Japanese",
+            "staring": "Junko Takeuchi, Maile Flanagan"
           }
-        ]
-      },
-      {
-        "name": "Comedy",
-        "display_order": 2,
-        "movies": [
-          {
-            "title": "Laugh Out Loud",
-            "description": "A hilarious adventure of a misfit duo.",
-            "imgUrl": "images/laugh_out_loud.jpg",
-            "price": 14.99,
-            "release_year": "2023",
-            "is_featured": false,
-            "movie_details": {
-              "director": "Sarah Fun",
-              "genre": "Comedy",
-              "trailer_url": "https://example.com/trailer/laugh_out_loud",
-              "rating": 4.3,
-              "time": "1h 50m",
-              "subtitles": "English",
-              "language": "English",
-              "staring": "Chris Happy, Anna Smile"
-            }
+        },
+        {
+          "title": "Hunter x Hunter",
+          "description": "A young boy follows in his father's footsteps to become a Hunter.",
+          "imgUrl": "images/hunter_x_hunter.jpg",
+          "price": 24.99,
+          "release_year": "2011",
+          "is_featured": true,
+          "category_id": 1,
+          "movie_details": {
+            "director": "Hiroshi Kōjina",
+            "genre": "Action/Adventure",
+            "trailer_url": "https://example.com/trailer/hunter_x_hunter",
+            "rating": 4.8,
+            "time": "148 episodes",
+            "subtitles": "English,Japanese",
+            "language": "Japanese",
+            "staring": "Megumi Han, Mariya Ise"
           }
-        ]
-      },
-      {
-        "name": "Drama",
-        "display_order": 3,
-        "movies": [
-          {
-            "title": "Echoes of the Past",
-            "description": "A family struggles to come to terms with their history.",
-            "imgUrl": "images/echoes_of_the_past.jpg",
-            "price": 18.99,
-            "release_year": "2022",
-            "is_featured": false,
-            "movie_details": {
-              "director": "Liam Story",
-              "genre": "Drama",
-              "trailer_url": "https://example.com/trailer/echoes_of_the_past",
-              "rating": 4.6,
-              "time": "2h",
-              "subtitles": "English,Spanish",
-              "language": "English",
-              "staring": "Emma Grace, Michael Stone"
-            }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Comedy",
+      "display_order": 2,
+      "movies": [
+        {
+          "title": "SpongeBob SquarePants",
+          "description": "The underwater misadventures of SpongeBob and his friends.",
+          "imgUrl": "images/spongebob.jpg",
+          "price": 14.99,
+          "release_year": "1999",
+          "is_featured": false,
+          "category_id": 2,
+          "movie_details": {
+            "director": "Stephen Hillenburg",
+            "genre": "Comedy/Animation",
+            "trailer_url": "https://example.com/trailer/spongebob",
+            "rating": 4.7,
+            "time": "270 episodes",
+            "subtitles": "English",
+            "language": "English",
+            "staring": "Tom Kenny, Bill Fagerbakke"
           }
-        ]
-      }
-    ]
-  }
-  
+        },
+        {
+          "title": "The Grinch",
+          "description": "The classic tale of a grumpy Grinch trying to steal Christmas.",
+          "imgUrl": "images/the_grinch.jpg",
+          "price": 9.99,
+          "release_year": "2000",
+          "is_featured": true,
+          "category_id": 2,
+          "movie_details": {
+            "director": "Ron Howard",
+            "genre": "Comedy/Family",
+            "trailer_url": "https://example.com/trailer/the_grinch",
+            "rating": 4.5,
+            "time": "1h 44m",
+            "subtitles": "English,French",
+            "language": "English",
+            "staring": "Jim Carrey, Taylor Momsen"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Drama",
+      "display_order": 3,
+      "movies": [
+        {
+          "title": "Smile",
+          "description": "A psychological thriller exploring deep-seated fears.",
+          "imgUrl": "images/smile.jpg",
+          "price": 17.99,
+          "release_year": "2022",
+          "is_featured": false,
+          "category_id": 3,
+          "movie_details": {
+            "director": "Parker Finn",
+            "genre": "Drama/Thriller",
+            "trailer_url": "https://example.com/trailer/smile",
+            "rating": 4.3,
+            "time": "1h 55m",
+            "subtitles": "English,Spanish",
+            "language": "English",
+            "staring": "Sosie Bacon, Kyle Gallner"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Family",
+      "display_order": 4,
+      "movies": [
+        {
+          "title": "Nemo",
+          "description": "An adventurous clownfish searching for his son.",
+          "imgUrl": "images/nemo.jpg",
+          "price": 12.99,
+          "release_year": "2003",
+          "is_featured": true,
+          "category_id": 4,
+          "movie_details": {
+            "director": "Andrew Stanton",
+            "genre": "Animation/Family",
+            "trailer_url": "https://example.com/trailer/nemo",
+            "rating": 4.8,
+            "time": "1h 40m",
+            "subtitles": "English,French,Spanish",
+            "language": "English",
+            "staring": "Albert Brooks, Ellen DeGeneres"
+          }
+        },
+        {
+          "title": "Wall-E",
+          "description": "A small waste-collecting robot embarks on an intergalactic adventure.",
+          "imgUrl": "images/wall_e.jpg",
+          "price": 13.99,
+          "release_year": "2008",
+          "is_featured": true,
+          "category_id": 4,
+          "movie_details": {
+            "director": "Andrew Stanton",
+            "genre": "Animation/Sci-Fi",
+            "trailer_url": "https://example.com/trailer/wall_e",
+            "rating": 4.9,
+            "time": "1h 38m",
+            "subtitles": "English,Spanish,French",
+            "language": "English",
+            "staring": "Ben Burtt, Elissa Knight"
+          }
+        },
+        {
+          "title": "The Lion King",
+          "description": "A lion cub prince is cast out of his pride and must find his way back.",
+          "imgUrl": "images/lion_king.jpg",
+          "price": 15.99,
+          "release_year": "1994",
+          "is_featured": true,
+          "category_id": 4,
+          "movie_details": {
+            "director": "Roger Allers, Rob Minkoff",
+            "genre": "Animation/Family",
+            "trailer_url": "https://example.com/trailer/lion_king",
+            "rating": 4.9,
+            "time": "1h 28m",
+            "subtitles": "English,Spanish,French",
+            "language": "English",
+            "staring": "Matthew Broderick, James Earl Jones"
+          }
+        },
+        {
+          "title": "Up",
+          "description": "An elderly man and a young boy embark on an unforgettable adventure.",
+          "imgUrl": "images/up.jpg",
+          "price": 14.99,
+          "release_year": "2009",
+          "is_featured": true,
+          "category_id": 4,
+          "movie_details": {
+            "director": "Pete Docter, Bob Peterson",
+            "genre": "Animation/Adventure",
+            "trailer_url": "https://example.com/trailer/up",
+            "rating": 4.9,
+            "time": "1h 36m",
+            "subtitles": "English,Spanish,French",
+            "language": "English",
+            "staring": "Ed Asner, Jordan Nagai"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -17,5 +17,4 @@ router.delete("/movies/:id", contentController.deleteMovie);
 router.post("/cart/add", contentController.addToCart);
 router.get("/cart/count/:userId", contentController.getCartCount);
 router.post("/bulk-upload", contentController.bulkUpload);
-
 module.exports = router;

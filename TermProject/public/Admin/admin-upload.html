@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body> 
+
     <header>
       <div class="side-nav">
         <div class="user">
@@ -32,7 +33,7 @@
     <section>
       <h1 class="logo">sinema</h1>
         <h1>Admin Bulk Product Upload</h1>
-        <form id="bulkUploadForm" action="/bulk-upload" method="POST" enctype="multipart/form-data">
+        <form id="bulkUploadForm">
           <input type="file" id="myFile" name="bulkFile" accept=".json" required>
           <button type="submit">Submit</button>
       </form>
@@ -82,5 +83,7 @@
     <footer>
 
     </footer>
+    <script src="bulkUpload.js"></script>
+
 </body>
 </html>

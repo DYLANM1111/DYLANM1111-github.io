@@ -200,10 +200,11 @@ createMovie: async (req, res) => {
    },
    bulkUpload: async (req, res) => {
     console.log('Bulk upload request received');
-    console.log('Request body:', req.body);  
+    console.log('Request body:', req.body);
+
+    const dbTransaction = db.runAsync || db.run; // Use an async wrapper if available
     try {
-        // Start the transaction once at the beginning
-        await db.run('BEGIN TRANSACTION');
+        await dbTransaction('BEGIN TRANSACTION'); // Start the transaction
 
         const { categories } = req.body;
 
@@ -213,33 +214,38 @@ createMovie: async (req, res) => {
 
         for (const category of categories) {
             const categoryId = await MovieModel.ensureCategory(category);
-            
+            console.log(`Ensuring category '${category.name}' (ID: ${categoryId})`);
+
             if (!category.movies || category.movies.length === 0) {
                 console.warn(`No movies found for category '${category.name}'`);
                 continue;
             }
 
             for (const movie of category.movies) {
-                // Ensure movie details are properly passed
+                console.log(`Processing movie '${movie.title}'`);
                 await MovieModel.addMovie({
                     ...movie,
                     category_id: categoryId,
-                    ...movie.movie_details  // Spread movie details here
+                    ...movie.movie_details,
                 });
             }
         }
 
-        // Commit the transaction after all the operations
-        await db.run('COMMIT');
+        await dbTransaction('COMMIT'); // Commit the transaction
         console.log('Bulk upload successful');
         res.json({ success: true });
     } catch (error) {
-        // Rollback if there is any error
-        await db.run('ROLLBACK');
+        try {
+            await dbTransaction('ROLLBACK'); // Rollback the transaction on error
+        } catch (rollbackError) {
+            console.error('Error during transaction rollback:', rollbackError);
+        }
+
         console.error('Error during bulk upload:', error);
         res.status(500).json({ error: error.message });
     }
 }
 
 };
+
 module.exports = contentController;

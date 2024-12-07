@@ -233,6 +233,20 @@ async function deleteMovie(id) {
 
 let movieData = { categories: [] };
 
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', async () => {
     // Check if we're on the products list page
@@ -287,73 +301,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 // admin.js
-// Handle form submission
-document.querySelector('form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const fileInput = document.getElementById('myFile');
-    const file = fileInput.files[0];
-
-    // Validate file type and existence
-    if (!file || !file.name.toLowerCase().endsWith('.json')) {
-        alert('Please select a valid JSON file');
-        return;
-    }
-
-    const submitButton = document.querySelector('button[type="submit"]');
-    submitButton.disabled = true;
-    submitButton.textContent = 'Uploading...';
-
-    try {
-        // Read file content and parse JSON
-        const data = await readFile(file);
-
-        // Upload JSON data to the server
-        await uploadBulkData(data);
-
-        alert('Upload successful');
-    } catch (error) {
-        console.error('Upload failed:', error);
-        alert('Upload failed: ' + error.message);
-    } finally {
-        // Re-enable submit button
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit';
-    }
-});
-
-// Read the JSON file
-async function readFile(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const jsonData = JSON.parse(e.target.result);
-                resolve(jsonData);
-            } catch (parseError) {
-                reject(new Error('Invalid JSON file'));
-            }
-        };
-        reader.onerror = (e) => reject(new Error('File reading error'));
-        reader.readAsText(file);
-    });
-}
-
-// Upload JSON data to the server
-async function uploadBulkData(data) {
-    const response = await fetch('/api/bulk-upload', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-        console.error('Error response:', await response.text());
-        throw new Error(await response.text());
-    }
-
-    return response.json();
-}
 
 // Handle image file preview
 const imgInput = document.getElementById('imgUrl');

@@ -2,14 +2,25 @@
 const express = require('express');
 const PORT = 3000;
 const app = express();
+const cors = require('cors');
+app.use(cors());
+
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // For form submissions
 
-
+const contentController = require("./Server/Controller/Controller");
 
 // Routes
 const routes = require('./Server/Routes/routes');
 app.use('/api', routes);
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+  app.post('/api/bulk-upload', contentController.bulkUpload);
 
 // Static files
 app.use('/client', express.static('public/client'));
