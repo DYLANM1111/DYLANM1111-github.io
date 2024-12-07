@@ -80,7 +80,7 @@
           "movie_details": {
             "director": "Ron Howard",
             "genre": "Comedy/Family",
-            "trailer_url": "https://example.com/trailer/the_grinch",
+            "trailer_url": "images/Grinch.mp4",
             "rating": 4.5,
             "time": "1h 44m",
             "subtitles": "English,French",
