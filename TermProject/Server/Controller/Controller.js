@@ -129,12 +129,21 @@ createMovie: async (req, res) => {
         try {
             const movieData = req.body;
             
-            // Handle file paths
-            movieData.imgUrl = req.files?.imgUrl ? 
-                `Images/${req.files.imgUrl[0].filename}` : 'Images/placeholder.jpg';
+            // If files were uploaded, use their paths
+            if (req.files?.imgUrl) {
+                movieData.imgUrl = `Images/${req.files.imgUrl[0].filename}`;
+            } else if (movieData.imgUrl) {
+                // If a path was provided in the body, use that
+                // Keep the path as provided, don't override it
+            } else {
+                // Only use placeholder if no image path or file was provided
+                movieData.imgUrl = 'Images/placeholder.jpg';
+            }
                 
-            movieData.trailer_url = req.files?.trailer_url ? 
-                `trailers/${req.files.trailer_url[0].filename}` : null;
+            if (req.files?.trailer_url) {
+                movieData.trailer_url = `trailers/${req.files.trailer_url[0].filename}`;
+            }
+            // Keep existing trailer_url if provided in body
 
             const movie = await MovieModel.addMovie(movieData);
             res.json(movie);

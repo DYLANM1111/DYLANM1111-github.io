@@ -1,5 +1,8 @@
 "use strict";
-
+const imageSelector = document.getElementById('imageSelector');
+const trailerSelector = document.getElementById('trailerSelector');
+const imgUrlInput = document.getElementById('imgUrl');
+const trailerUrlInput = document.getElementById('trailer_url');
 function createMovieElement(movie) {
     const movieElement = document.createElement('div');
     movieElement.className = 'movie';
@@ -127,11 +130,51 @@ async function populateCategories() {
     }
 }
 
+
+if (imageSelector) {
+    imageSelector.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            const fileName = this.files[0].name;
+            // Ensure consistent path format
+            imgUrlInput.value = `images/${fileName.toLowerCase()}`.replace('Images/', 'images/');
+            
+            // Show preview
+            const previewContainer = document.getElementById('currentImage');
+            previewContainer.innerHTML = `
+                <div class="preview-container">
+                    <p>Selected image:</p>
+                    <img src="../client/images/${fileName}" alt="Preview" 
+                         onerror="this.src='../client/images/placeholder.jpg';">
+                </div>
+            `;
+        }
+    });
+}
+
+if (trailerSelector) {
+    trailerSelector.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            const fileName = this.files[0].name;
+            trailerUrlInput.value = `videos/${fileName}`;
+            
+            // Show file name
+            const previewContainer = document.getElementById('currentTrailer');
+            previewContainer.innerHTML = `
+                <div class="preview-container">
+                    <p>Selected video: ${fileName}</p>
+                </div>
+            `;
+        }
+    });
+}
+
+// Modified populateEditForm to handle file previews
 async function populateEditForm(movieId) {
     try {
         const response = await fetch(`http://localhost:3000/api/movies/${movieId}`);
         const movie = await response.json();
         
+        // Populate basic fields
         const fields = [
             'title', 'description', 'price', 'category_id', 
             'release_year', 'is_featured', 'director', 'genre',
@@ -149,50 +192,65 @@ async function populateEditForm(movieId) {
             }
         });
 
-        // Show current image preview
+        // Handle image
         if (movie.imgUrl) {
-            const imgPreview = document.createElement('div');
-            imgPreview.className = 'preview-container';
+            imgUrlInput.value = movie.imgUrl;
+            const imgPreview = document.getElementById('currentImage');
             imgPreview.innerHTML = `
-                <p>Current image:</p>
-                <img src="../client/${movie.imgUrl}" alt="Current movie image" style="max-width: 200px;">
+                <div class="preview-container">
+                    <p>Current image:</p>
+                    <img src="../client/${movie.imgUrl}" alt="Current movie image" 
+                         onerror="this.src='../client/images/placeholder.jpg';">
+                </div>
             `;
-            document.getElementById('imgUrl').parentNode.appendChild(imgPreview);
         }
         
-        // Show current trailer info
+        // Handle trailer
         if (movie.trailer_url) {
-            const trailerPreview = document.createElement('div');
-            trailerPreview.className = 'preview-container';
+            trailerUrlInput.value = movie.trailer_url;
+            const trailerPreview = document.getElementById('currentTrailer');
             trailerPreview.innerHTML = `
-                <p>Current trailer: ${movie.trailer_url}</p>
+                <div class="preview-container">
+                    <p>Current trailer: ${movie.trailer_url}</p>
+                </div>
             `;
-            document.getElementById('trailer_url').parentNode.appendChild(trailerPreview);
         }
 
     } catch (error) {
         console.error('Error loading movie data:', error);
+        alert('Error loading movie data: ' + error.message);
     }
 }
 
+// Modified saveMovie function
 async function saveMovie(formData) {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
     const method = movieId ? 'PUT' : 'POST';
-    const url = movieId ? `http://localhost:3000/api/movies/${movieId}` : 'http://localhost:3000/api/movies';
+    const url = movieId ? 
+        `http://localhost:3000/api/movies/${movieId}` : 
+        'http://localhost:3000/api/movies';
 
+    // Debug: Log the form data before conversion
+    console.log('Raw FormData values:');
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    // Convert FormData to JSON
     const jsonData = {};
     formData.forEach((value, key) => {
         if (key === 'is_featured') {
             jsonData[key] = value === 'on';
-        } else if ((key === 'imgUrl' || key === 'trailer_url') && value instanceof File) {
-            if (value.size > 0) {
-                jsonData[key] = value;
-            }
         } else if (value !== '') {
             jsonData[key] = value;
         }
+        // Debug: Log each conversion
+        console.log(`Converting ${key}: ${value} to ${jsonData[key]}`);
     });
+
+    // Debug: Log final JSON
+    console.log('Final JSON data:', jsonData);
 
     try {
         const response = await fetch(url, {
@@ -203,10 +261,17 @@ async function saveMovie(formData) {
             body: JSON.stringify(jsonData)
         });
         
-        if (!response.ok) throw new Error('Failed to save movie');
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Failed to save movie');
+        }
+        
+        // Debug: Log response
+        const responseData = await response.json();
+        console.log('Server response:', responseData);
         
         alert('Movie saved successfully');
-        window.location.href = 'admin-products.html';
+       // window.location.href = 'admin-products.html';
     } catch (error) {
         console.error('Error:', error);
         alert('Failed to save movie: ' + error.message);
@@ -272,63 +337,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.preventDefault();
             await saveMovie(new FormData(e.target));
         });
-        document.getElementById('editProductForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const movieId = new URLSearchParams(window.location.search).get('id');
-            const url = movieId ? 
-                `http://localhost:3000/api/movies/${movieId}` : 
-                'http://localhost:3000/api/movies';
-        
-            try {
-                const response = await fetch(url, {
-                    method: movieId ? 'PUT' : 'POST',
-                    body: formData
-                });
-        
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.message || 'Server error');
-                }
-        
-                const result = await response.json();
-                alert('Movie saved successfully');
-                window.location.href = 'admin-products.html';
-            } catch (error) {
-                console.error('Error details:', error);
-                alert('Error saving movie: ' + error.message);
-            }
-        });
+       ;
 // admin.js
 
-// Handle image file preview
-const imgInput = document.getElementById('imgUrl');
-if (imgInput) {
-    imgInput.addEventListener('change', function (e) {
-        if (this.files && this.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const previewContainer = document.querySelector('.preview-container img');
 
-                if (previewContainer) {
-                    // Update existing preview
-                    previewContainer.src = e.target.result;
-                } else {
-                    // Create new preview
-                    const newPreview = document.createElement('div');
-                    newPreview.className = 'preview-container';
-                    newPreview.innerHTML = `
-                        <p>New image preview:</p>
-                        <img src="${e.target.result}" style="max-width: 200px;">
-                    `;
-                    imgInput.parentNode.appendChild(newPreview);
-                }
-            };
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-}
+
 
     }
     

@@ -30,25 +30,37 @@ async function loadMovieDetails() {
 }
 
 function populateMovieDetails(movie) {
+    // Handle product image
     const productImage = document.querySelector(".product-image img");
     if (productImage) {
         productImage.src = movie.imgUrl;
         productImage.alt = movie.title;
     }
 
+    // Update title and price
     document.querySelector(".product-info h1").textContent = movie.title;
     document.querySelector(".price").textContent = `$${movie.price.toFixed(2)}`;
+
+    // Update movie meta information with icons
+    document.querySelector(".movie-meta .rating").innerHTML = 
+        `<i class="fas fa-star"></i> ${movie.rating || 'N/A'}`;
+    document.querySelector(".movie-meta .duration").innerHTML = 
+        `<i class="fas fa-clock"></i> ${movie.time || 'N/A'}`;
     document.querySelector(".movie-meta .year").textContent = movie.release_year;
     document.querySelector(".movie-meta .genre").textContent = movie.genre || "N/A";
+
+    // Update description
     document.querySelector(".description").textContent = movie.description || "No description available.";
 
+    // Update movie details section
     const detailsHTML = `
-        <p><strong>Director:</strong> ${movie.director || "Unknown"}</p>
-        <p><strong>Starring:</strong> ${movie.starring || "N/A"}</p>
-        <p><strong>Language:</strong> ${movie.language || "N/A"}</p>
-        <p><strong>Subtitles:</strong> ${movie.subtitles || "N/A"}</p>
+        <h3>Movie Details</h3>
+        <p><strong>Director:</strong> <span id="movieDirector">${movie.director || "Unknown"}</span></p>
+        <p><strong>Starring:</strong> <span id="movieStarring">${movie.staring || "N/A"}</span></p>
+        <p><strong>Language:</strong> <span id="movieLanguage">${movie.language || "N/A"}</span></p>
+        <p><strong>Subtitles:</strong> <span id="movieSubtitles">${movie.subtitles || "N/A"}</span></p>
     `;
-    document.querySelector(".details").innerHTML = `<h3>Movie Details</h3>${detailsHTML}`;
+    document.querySelector(".details").innerHTML = detailsHTML;
 }
 
 function setupTrailerModal(trailerUrl) {

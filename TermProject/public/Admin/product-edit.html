@@ -48,9 +48,11 @@
                     <input type="number" id="price" name="price" step="0.01" min="0">
                 </div>
                 <div class="form-group">
-                    <label for="imgUrl">Image Card</label>
-                    <input type="file" id="imgUrl" name="imgUrl">
-                    <div id="currentImage"></div>
+                    <label for="imgUrl">Image Card:</label>
+                    <input type="text" id="imgUrl" name="imgUrl" readonly>
+                    <button type="button" class="browse-btn" onclick="document.getElementById('imageSelector').click()">Browse Images</button>
+                    <input type="file" id="imageSelector" accept="image/*" style="display: none">
+                    <div id="currentImage" class="image-preview"></div>
                 </div>
                 <div class="form-group">
                     <label for="category_id">Category:</label>
@@ -78,10 +80,14 @@
                     <input type="text" id="genre" name="genre">
                 </div>
                 <div class="form-group">
-                    <label for="trailer_url">Trailer</label>
-                    <input type="file" id="trailer_url" name="trailer_url">
-                    <div id="currentTrailer"></div>
+                    <label for="trailer_url">Trailer:</label>
+                    <input type="text" id="trailer_url" name="trailer_url" readonly>
+                    <button type="button" class="browse-btn" onclick="document.getElementById('trailerSelector').click()">Browse Videos</button>
+                    <input type="file" id="trailerSelector" accept="video/*" style="display: none">
+                    <div id="currentTrailer" class="video-preview"></div>
                 </div>
+                
+                
                 <div class="form-group">
                     <label for="rating">Rating:</label>
                     <input type="number" id="rating" name="rating" step="0.1" min="0" max="5">

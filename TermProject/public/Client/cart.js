@@ -146,7 +146,15 @@ class CartManager {
         this.updateCartDisplay();
         this.updateOrderSummary();
     }
-
+    clearCart() {
+        localStorage.removeItem('cart');
+    
+        this.updateCartDisplay();
+        this.updateOrderSummary();
+    
+        console.log('Cart has been emptied.');
+    }
+    
     removeFromCart(index) {
         const cart = this.getCart();
         cart.splice(index, 1);
@@ -161,10 +169,12 @@ class CartManager {
             alert('Your cart is empty!');
             return;
         }
-        
-        // Add checkout logic here
+    
         alert('Proceeding to checkout...');
+    
+        this.clearCart();
     }
+    
 }
 
 // Initialize cart manager when DOM is loaded
